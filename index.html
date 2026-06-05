@@ -1,3 +1,82 @@
-<html>
-  <image src="vDSzVqMGcd06w2D.jpeg">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>全屏图片展示</title>
+    <style>
+        /* 彻底重置内外边距，确保全屏无缝隙 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 隐藏滚动条（可选，因为全屏图片一般不希望滚动） */
+            overflow: hidden;
+            /* 确保body占满整个视口 */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* 图片容器 */
+        .fullscreen-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* 使用flex让图片居中，以防图片比例不匹配时出现留白 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* 加载时或图片不够大时的背景色 */
+        }
+
+        /* 图片样式：强制覆盖整个屏幕，保持比例，必要时裁剪 */
+        .fullscreen-image img {
+            /* 方案1：cover模式 - 图片完全覆盖屏幕，可能会裁剪边缘（推荐，真正全屏无黑边） */
+            object-fit: cover;
+            
+            /* 方案2：contain模式 - 图片完整显示，但可能有黑边（如果你不想裁剪图片，取消下面两行注释，并注释掉上面的object-fit） */
+            /* object-fit: contain; */
+            
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 可选：添加一个半透明水印或文字（不需要可以删除这部分） */
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 6px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            pointer-events: none; /* 让文字不干扰点击 */
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-image">
+        <!-- 
+            【重要】请将下面图片的文件名改成你实际上传的图片文件名
+            你截图里的是：vDSzVqMGcd06w2D.jpeg
+            已按此填写，如果文件名不同请修改 src="你的图片文件名.后缀"
+        -->
+        <img src="vDSzVqMGcd06w2D.jpeg" alt="全屏展示图片">
+        
+        <!-- 可选底部水印，不需要可以删除下面这行 -->
+        <div class="caption">全屏图片展示</div>
+    </div>
+</body>
 </html>
